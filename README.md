@@ -12,26 +12,18 @@ Este projeto é um sistema de gerenciamento de transações que permite a realiz
 
 ## Instalação
 
-1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/sistema-gerenciamento-transacoes.git
-    ```
-2. Navegue até o diretório do projeto:
-    ```bash
-    cd sistema-gerenciamento-transacoes
-    ```
-3. Instale as dependências:
-    ```bash
-    mvn install
+    git clone https://github.com/seu-usuario/sistema-gerenciamento-transacoes.gitl
     ```
 
-## Uso
+## Tecnologias Utilizadas
 
-1. Inicie a aplicação:
-    ```bash
-    mvn spring-boot:run
-    ```
-2. Utilize os seguintes endpoints para interagir com a API:
+* **Spring Boot:** 3.3.3
+* **Java:** 17
+* **Banco de dados:** PostgreSQL 
+* **Framework ORM:** Hibernate
+* **Build:** Maven
+* **Documentação:** Swagger, Javadoc
 
 ### Endpoints
 
