@@ -90,8 +90,8 @@ Este projeto é um sistema de gerenciamento de transações que permite a realiz
     }
     ```
 
-###Conexão com Banco de Dados PostgreSQL e JPA
-Esta aplicação utiliza o Spring Data JPA para interagir com o banco de dados PostgreSQL. A configuração necessária para a conexão com o banco de dados está no arquivo application.properties.
+### Conexão com Banco de Dados e JPA
+Esta aplicação utiliza o Spring Data JPA para interagir com o banco de dados. A configuração necessária para a conexão com o banco de dados está no arquivo application.properties.
 
 ```properties
 //Configuração do application.properties:
@@ -103,19 +103,5 @@ spring.datasource.url = URL de conexão com o banco de dados.
 spring.datasource.username = Nome de usuário para a conexão com o banco de dados.
 spring.datasource.password = Senha para a conexão com o banco de dados.
 ```
-**Dependências no pom.xml**
-Certifique-se de que as seguintes dependências estão incluídas no seu pom.xml:
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <scope>runtime</scope>
-</dependency>
-```
 
-Estas dependências são necessárias para utilizar o Spring Data JPA e o driver JDBC do PostgreSQL.
 
