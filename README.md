@@ -11,10 +11,10 @@ Este projeto é um sistema de gerenciamento de transações que permite a realiz
 - Gerenciamento de clientes e empresas.
 
 ## Instalação
-
-    ```bash
+    
     git clone https://github.com/seu-usuario/sistema-gerenciamento-transacoes.gitl
-    ```
+    
+    
 
 ## Tecnologias Utilizadas
 
