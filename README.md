@@ -90,4 +90,26 @@ Este projeto é um sistema de gerenciamento de transações que permite a realiz
     }
     ```
 
+###Conexão com Banco de Dados PostgreSQL e JPA
+Esta aplicação utiliza o Spring Data JPA para interagir com o banco de dados PostgreSQL. A configuração necessária para a conexão com o banco de dados está no arquivo application.properties.
 
+```properties
+//Configuração do application.properties:
+spring.jpa.show-sql: Define se as consultas SQL geradas pelo Hibernate devem ser exibidas no console.
+spring.jpa.hibernate.ddl-auto: Define a estratégia de geração de esquema do banco de dados. O valor update atualiza o esquema do banco de dados conforme as mudanças nas entidades.
+spring.jpa.database-platform: Especifica o dialeto do banco de dados a ser usado pelo Hibernate.
+spring.datasource.driver-class-name: Define a classe do driver JDBC a ser usada.
+spring.datasource.url: URL de conexão com o banco de dados PostgreSQL.
+spring.datasource.username: Nome de usuário para a conexão com o banco de dados.
+spring.datasource.password: Senha para a conexão com o banco de dados.
+```
+**Dependências no pom.xml**
+Certifique-se de que as seguintes dependências estão incluídas no seu pom.xml:
+
+Estas dependências são necessárias para utilizar o Spring Data JPA e o driver JDBC do PostgreSQL.
+
+**Configuração do Banco de Dados**
+Instale o PostgreSQL em sua máquina ou utilize um serviço de banco de dados PostgreSQL hospedado.
+Crie um banco de dados para a aplicação.
+Atualize as propriedades spring.datasource.url, spring.datasource.username e spring.datasource.password no arquivo application.properties com as informações do seu banco de dados.
+Com essas configurações, a aplicação estará pronta para se conectar ao banco de dados PostgreSQL e utilizar o JPA para realizar operações de persistência.
