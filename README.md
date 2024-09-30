@@ -11,27 +11,19 @@ Este projeto é um sistema de gerenciamento de transações que permite a realiz
 - Gerenciamento de clientes e empresas.
 
 ## Instalação
+    
+    git clone https://github.com/seu-usuario/sistema-gerenciamento-transacoes.gitl
+    
+    
 
-1. Clone o repositório:
-    ```bash
-    git clone https://github.com/seu-usuario/sistema-gerenciamento-transacoes.git
-    ```
-2. Navegue até o diretório do projeto:
-    ```bash
-    cd sistema-gerenciamento-transacoes
-    ```
-3. Instale as dependências:
-    ```bash
-    mvn install
-    ```
+## Tecnologias Utilizadas
 
-## Uso
-
-1. Inicie a aplicação:
-    ```bash
-    mvn spring-boot:run
-    ```
-2. Utilize os seguintes endpoints para interagir com a API:
+* **Spring Boot:** 3.3.3
+* **Java:** 17
+* **Banco de dados:** PostgreSQL 
+* **Framework ORM:** Hibernate
+* **Build:** Maven
+* **Documentação:** Swagger, Javadoc
 
 ### Endpoints
 
@@ -90,23 +82,18 @@ Este projeto é um sistema de gerenciamento de transações que permite a realiz
     }
     ```
 
-## Contribuição
+### Conexão com Banco de Dados e JPA
+Esta aplicação utiliza o Spring Data JPA para interagir com o banco de dados. A configuração necessária para a conexão com o banco de dados está no arquivo application.properties.
 
-1. Faça um fork do projeto.
-2. Crie uma nova branch:
-    ```bash
-    git checkout -b minha-nova-funcionalidade
-    ```
-3. Faça suas alterações e commit:
-    ```bash
-    git commit -m 'Adiciona nova funcionalidade'
-    ```
-4. Envie para o repositório remoto:
-    ```bash
-    git push origin minha-nova-funcionalidade
-    ```
-5. Abra um Pull Request.
+```properties
+//Configuração do application.properties:
+spring.jpa.show-sql =  Define se as consultas SQL geradas pelo Hibernate devem ser exibidas no console.
+spring.jpa.hibernate.ddl-auto = Define a estratégia de geração de esquema do banco de dados. O valor update atualiza o esquema do banco de dados conforme as mudanças nas entidades.
+spring.jpa.database-platform = Especifica o dialeto do banco de dados a ser usado pelo Hibernate.
+spring.datasource.driver-class-name = Define a classe do driver JDBC a ser usada.
+spring.datasource.url = URL de conexão com o banco de dados.
+spring.datasource.username = Nome de usuário para a conexão com o banco de dados.
+spring.datasource.password = Senha para a conexão com o banco de dados.
+```
 
-## Licença
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
