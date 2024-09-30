@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 /**
@@ -76,11 +75,11 @@ public class TransacaoService {
      * @param empresaId        Identificador da empresa (CNPJ).
      * @param valor            Valor da transação.
      * @param tipo             Tipo da transação ("saque" ou "depósito").
-     * @param taxaAdministracao Taxa administrativa aplicada à transação (se aplicável).
+     * @param taxaSistema Taxa SIstema aplicada à transação (se aplicável).
      * @return A transação realizada e salva no banco de dados.
      * @throws IllegalArgumentException Se o cliente ou empresa não for encontrado, ou se o saldo da empresa for insuficiente para o saque.
      */
-    public Transacao realizarTransacao(String clienteId, String empresaId, BigDecimal valor, String tipo, BigDecimal taxaAdministracao) {
+    public Transacao realizarTransacao(String clienteId, String empresaId, BigDecimal valor, String tipo, BigDecimal taxaSistema) {
         // Buscar Cliente e Empresa no banco
         Cliente cliente = clienteRepository.findByCpfCliente(clienteId);
         if (cliente == null) {
@@ -92,8 +91,8 @@ public class TransacaoService {
         }
 
         // Calcular a taxa da empresa
-        BigDecimal taxa = calcularTaxa(empresa, taxaAdministracao);
-        BigDecimal valorFinal = valor.subtract(taxa).setScale(2, RoundingMode.HALF_UP);  
+        BigDecimal taxa = calcularTaxa(empresa, taxaSistema);
+        BigDecimal valorFinal = valor.subtract(taxa);
 
         // Verificar se a transação é válida (se for saque, verificar saldo da empresa)
         if (tipo.equalsIgnoreCase("saque") && empresa.getSaldo().compareTo(valorFinal) < 0) {
@@ -132,17 +131,17 @@ public class TransacaoService {
      * e a taxa de administração adicional fornecida.
      * 
      * @param empresa Empresa para a qual a taxa será calculada.
-     * @param taxaAdministracao Taxa de administração adicional fornecida na transação.
+     * @param taxaSistema Taxa de Sistema adicional fornecida na transação.
      * @return A taxa total calculada.
      */
-    private BigDecimal calcularTaxa(Empresa empresa, BigDecimal taxaAdministracao) {
-        // Simulando uma taxa variável de acordo com a taxa de administração da empresa, com um acréscimo de 2%
+    private BigDecimal calcularTaxa(Empresa empresa, BigDecimal taxaSistema) {
+        // Simulando uma taxa de administração de 2% sobre o valor da transação
         BigDecimal taxa = empresa.getTaxaAdministracao().multiply(BigDecimal.valueOf(0.02));
-        if(taxaAdministracao != null) {
+        if(taxaSistema != null) {
             // Adicionando taxa de administração, simulando uma taxa fixa de acordo com o valor informado
-            taxa = taxa.add(taxaAdministracao);
+            taxa = taxa.add(taxaSistema);
         }
-        return taxa;
+        return taxa;        
     }
 
     /**
