@@ -138,7 +138,7 @@ public class TransacaoService {
         // Simulando uma taxa de administração de 2% sobre o valor da transação
         BigDecimal taxa = empresa.getTaxaAdministracao().multiply(BigDecimal.valueOf(0.02));
         if(taxaSistema != null) {
-            // Adicionando taxa de administração, simulando uma taxa fixa de acordo com o valor informado
+            // Adicionando taxa de sistema, simulando uma taxa fixa de acordo com o valor informado
             taxa = taxa.add(taxaSistema);
         }
         return taxa;        

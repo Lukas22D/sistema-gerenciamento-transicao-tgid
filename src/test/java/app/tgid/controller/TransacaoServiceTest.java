@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+
 class TransacaoServiceTest {
 
     @Mock
@@ -58,8 +59,8 @@ class TransacaoServiceTest {
         // Setup de uma empresa de exemplo
         empresa = new Empresa();
         empresa.setCnpj("98765432100");
-        empresa.setSaldo(new BigDecimal("1000.00"));
-        empresa.setTaxaAdministracao(new BigDecimal("50.00"));
+        empresa.setSaldo(BigDecimal.valueOf(1000.00));
+        empresa.setTaxaAdministracao(BigDecimal.valueOf(50.00));
     }
 
     @Test
@@ -70,15 +71,15 @@ class TransacaoServiceTest {
         when(transacaoRepository.save(any(Transacao.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         // Realizar transação
-        empresa.setSaldo(new BigDecimal("1000.00"));
-        BigDecimal valor = new BigDecimal("500.00");
-        BigDecimal taxa = new BigDecimal("10");
+        empresa.setSaldo(BigDecimal.valueOf(1000.00));
+        BigDecimal valor = BigDecimal.valueOf(500.00);
+        BigDecimal taxa = BigDecimal.valueOf(10.00);
         Transacao transacao = transacaoService.realizarTransacao("12345678909", "98765432100", valor, "deposito", taxa);
         
         // Verificações
         assertNotNull(transacao);
         assertEquals(cliente, transacao.getCliente());
         assertEquals(empresa, transacao.getEmpresa());
-        assertEquals(valor.subtract(transacao.getTaxaSistema().multiply(BigDecimal.valueOf(0.02)).add(taxa)), transacao.getValor());
+        assertEquals(BigDecimal.valueOf(489.00), transacao.getValor().setScale(1));
     }
 }
